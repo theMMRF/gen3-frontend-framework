@@ -326,6 +326,68 @@ add a ```fieldsConfig``` entry. The format is _field_ name then _type_. In the e
 switch to use ```multiselect```. Note that ```multiselect``` is the only type supported. The selection is a dropdown that
 is also searchable.
 
+### Default Facet Sorting
+
+Enum facets are sorted by value count descending by default. To use a different initial sort order for an individual
+facet, set `defaultSort` in that field's `fieldsConfig` entry within the relevant `filters.tabs` entry:
+
+```json
+{
+  "filters": {
+    "tabs": [
+      {
+        "title": "Subjects",
+        "fields": ["gender"],
+        "fieldsConfig": {
+          "gender": {
+            "defaultSort": "label-asc"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+The supported values are:
+
+* `value-asc` - value count ascending
+* `value-dsc` - value count descending
+* `label-asc` - label ascending
+* `label-desc` - label descending
+
+Facets without `defaultSort` continue to use `value-dsc`.
+
+### Enum Facet Match Mode
+
+Enum facets combine multiple selected values with OR logic by default: a case
+matches when it contains any selected value. For a multivalued enum field, an
+individual facet can optionally let users switch between **Match any** (OR) and
+**Match all** (AND). Enable the selector with `showMatchModeSelector` in that
+field's `fieldsConfig` entry:
+
+```json
+{
+  "filters": {
+    "tabs": [
+      {
+        "title": "Clinical Criteria",
+        "fields": ["risk_criteria"],
+        "fieldsConfig": {
+          "risk_criteria": {
+            "showMatchModeSelector": true
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+The selector is disabled by default, and facets without this setting retain the
+existing Match any behavior. Match all is most useful for multivalued fields; on
+a single-valued field, distinct values cannot normally match simultaneously.
+
 ![MultiSelectFacet](images/Explorer/MultiSelectFacet.png)
 
 ### Export Cohort Datafiles to Data Library

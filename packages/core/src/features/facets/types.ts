@@ -34,4 +34,22 @@ export interface FacetDefinition {
   readonly sharedWithIndices?: Array<IndexAndField>; // if this filter is denormalized across indices
   readonly moveValuesToBottom?: Array<string>;
   readonly excludeValues?: Array<string>;
+  /**
+   * Initial sort order for the facet's values.
+   *
+   * @defaultValue `value-dsc`
+   */
+  readonly defaultSort?: FacetSortType;
+  /**
+   * Whether an enum facet lets users choose how multiple selected values are
+   * combined: match any (`or`) or match all (`and`).
+   *
+   * @remarks Only meaningful when {@link FacetDefinition.type} is `enum`.
+   * @defaultValue `false`
+   */
+  readonly showMatchModeSelector?: boolean;
+  /**
+   * Overrides the per-value label rendered for this facet when set.
+   */
+  readonly valueLabel?: string;
 }

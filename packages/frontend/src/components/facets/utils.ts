@@ -209,6 +209,9 @@ export const classifyFacets = (
             undefined,
           moveValuesToBottom: facetDef?.moveValuesToBottom,
           excludeValues: facetDef?.excludeValues,
+          defaultSort: facetDef?.defaultSort,
+          showMatchModeSelector: facetDef?.showMatchModeSelector,
+          valueLabel: facetDef?.valueLabel,
           range: facetDef?.range
             ? {
                 minimum:
