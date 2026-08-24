@@ -67,6 +67,7 @@ export const createFacetCard = ({
               showPercent={showPercent}
               showSettings={facetDefinition?.showMatchModeSelector}
               sharedWithIndices={facetDefinition?.sharedWithIndices}
+              defaultSort={facetDefinition?.defaultSort}
               moveValuesToBottom={facetDefinition?.moveValuesToBottom ?? []}
               excludeValues={facetDefinition?.excludeValues ?? []}
             />

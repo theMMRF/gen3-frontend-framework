@@ -34,12 +34,16 @@ const hooks = {
   useUpdateCombineMode: jest.fn(),
 } satisfies EnumFacetDataHooks;
 
-const getEnumFacet = (showMatchModeSelector?: boolean) => {
+const getEnumFacet = (
+  showMatchModeSelector?: boolean,
+  defaultSort?: FacetDefinition['defaultSort'],
+) => {
   const facetDefinition: FacetDefinition = {
     field: 'risk_criteria',
     index: 'case',
     type: 'enum',
     showMatchModeSelector,
+    defaultSort,
   };
 
   const card = createFacetCard({
@@ -59,5 +63,11 @@ describe('createFacetCard', () => {
   it('shows the match-mode settings only when the enum facet opts in', () => {
     expect(getEnumFacet(true).props.showSettings).toBe(true);
     expect(getEnumFacet().props.showSettings).toBeUndefined();
+  });
+
+  it('passes the configured default sort to the enum facet', () => {
+    expect(getEnumFacet(undefined, 'label-asc').props.defaultSort).toBe(
+      'label-asc',
+    );
   });
 });

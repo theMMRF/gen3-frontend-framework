@@ -47,6 +47,7 @@ export interface FacetCardProps<T extends FacetCommonHooks> {
   readonly queryOptions?: QueryOptions;
   readonly moveValuesToBottom?: Array<string>;
   readonly excludeValues?: Array<string>;
+  readonly defaultSort?: FacetSortType;
 
   readonly header?: {
     readonly Panel: ComponentType<{ children: ReactNode }>; // optional header component
